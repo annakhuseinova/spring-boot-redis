@@ -7,6 +7,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Set;
+
 @RestController
 @RequestMapping
 public class ProgrammerController {
@@ -27,4 +30,41 @@ public class ProgrammerController {
 
         return programmerService.getProgrammerAsString(id);
     }
+
+    @PostMapping(value = "/programmers-list")
+    public void addProgrammerToList(@RequestBody Programmer programmer){
+
+        programmerService.addProgrammerToList(programmer);
+    }
+
+    @GetMapping(value = "/programmers-list")
+    public List<Programmer> getProgrammerListMembers(){
+
+        return programmerService.getProgrammerListMembers();
+    }
+
+    @GetMapping(value = "/programmers-list/count")
+    public Long getProgrammerListCount(){
+
+        return programmerService.getProgrammersListCount();
+    }
+
+    @PostMapping
+    public void addProgrammerToProgrammerSet(@RequestBody Programmer ... programmers){
+
+        programmerService.addToProgrammerSet(programmers);
+    }
+
+    @GetMapping(name = "/programmers-set")
+    public Set<Programmer> getProgrammersSetMembers(){
+
+        return programmerService.getProgrammersSetMembers();
+    }
+
+    @PostMapping(value = "/programmers-set/member")
+    public boolean isSetMember(@RequestBody Programmer programmer){
+
+        return programmerService.isSetMember(programmer);
+    }
+
 }
