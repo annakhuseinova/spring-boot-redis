@@ -67,4 +67,28 @@ public class ProgrammerController {
         return programmerService.isSetMember(programmer);
     }
 
+    @PostMapping("/programmers-hash")
+    public void saveHash(@RequestBody Programmer programmer){
+
+        programmerService.saveHash(programmer);
+    }
+
+    @PutMapping(value = "/programmers-hash")
+    public void updateHash(@RequestBody Programmer programmer){
+
+        programmerService.updateHash(programmer);
+    }
+
+    @GetMapping(value = "/programmers-hash/{id}")
+    public Programmer findInHash(@PathVariable int id){
+
+        return programmerService.findInHash(id);
+    }
+
+    @DeleteMapping(value = "/programmers-hash/{id}")
+    public void deleteHash(@PathVariable int id){
+
+        programmerService.deleteHash(id);
+    }
+
 }
